@@ -50,13 +50,7 @@ fun validityPredicateForCount(red: Int, green: Int, blue: Int): (Game) -> Boolea
     }
 }
 
-fun part1(input: List<String>): Int {
-    val games = input
-            .map(String::parseGame)
-    val validGames = games
-            .filter(validityPredicateForCount(red = 12, green = 13, blue = 14))
-    return validGames.sumOf { it.number }
-}
+
 
 fun minNeededToWin(game: Game): Map<Colour, Int> {
     var minimum = mutableMapOf(
@@ -77,12 +71,20 @@ fun powerOf(map: Map<Colour, Int>): Int =
         Colour.entries.map { map.getOrDefault(it, 0) }
             .reduce(Int::times)
 
-fun part2(input: List<String>): Int{
-    return input.map(String::parseGame)
-            .map(::minNeededToWin)
-            .sumOf(::powerOf)
-}
+
 fun main() {
+    fun part1(input: List<String>): Int {
+        val games = input
+                .map(String::parseGame)
+        val validGames = games
+                .filter(validityPredicateForCount(red = 12, green = 13, blue = 14))
+        return validGames.sumOf { it.number }
+    }
+    fun part2(input: List<String>): Int{
+        return input.map(String::parseGame)
+                .map(::minNeededToWin)
+                .sumOf(::powerOf)
+    }
     val testResult = part1(readInput("Day02_test"))
     testResult.println()
     check(testResult == 8)
