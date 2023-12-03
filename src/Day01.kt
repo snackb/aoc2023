@@ -18,7 +18,7 @@ fun main() {
     )
 
     fun String.valueFirstDigit(): Char {
-        val firstActualDigit = this.indexOfFirst { chr -> chr.isDigit() }
+        val firstActualDigit = this.indexOfFirst { it.isDigit() }
         val firstSpeltDigit = this.findAnyOf(numbers)
         return if ( firstSpeltDigit == null || firstActualDigit < firstSpeltDigit.first && firstActualDigit != -1) {
             this[firstActualDigit]
@@ -28,7 +28,7 @@ fun main() {
     }
 
     fun String.valueLastDigit(): Char {
-        val lastActualDigit = this.indexOfLast { chr -> chr.isDigit() }
+        val lastActualDigit = this.indexOfLast { it.isDigit() }
         val lastSpeltDigitPair = this.findLastAnyOf(numbers)
         return if ( lastSpeltDigitPair == null || lastActualDigit > lastSpeltDigitPair.first){
             this[lastActualDigit]
