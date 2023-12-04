@@ -65,12 +65,11 @@ fun Map.Entry<Coord, String>.getAttachedGears(symbols: Symbols): Sequence<Coord>
 }
 
 fun determineGears(symbols: Symbols, numbers: Numbers): GearCandidates {
-    val gears = numbers.map { it.value to it.getAttachedGears(symbols)}
-            .flatMap { (number, gears) -> gears.map { gear -> gear to number  }}
+    return numbers.map { it.value to it.getAttachedGears(symbols) }
+            .flatMap { (number, gears) -> gears.map { gear -> gear to number } }
             .groupBy({ (gear, _) -> gear }, { (_, number) -> number })
-            .filter {it.value.size == 2}
+            .filter { it.value.size == 2 }
             .mapValues { (_, numbers) -> numbers[0].toInt() to numbers[1].toInt() }
-    return gears
 }
 
 fun main() {
@@ -79,9 +78,8 @@ fun main() {
         val filtered = numbers.filter {
             it.isContainedInSymbols(symbols)
         }
-        val sum = filtered.asIterable()
+        return filtered.asIterable()
                 .sumOf { it.value.toInt() }
-        return sum
     }
 
     fun part2(input: List<String>): Int{
