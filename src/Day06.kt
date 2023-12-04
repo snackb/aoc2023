@@ -9,7 +9,7 @@ fun main() {
         return 0
     }
 
-    val testInput = readInput("Day%DAY%_test")
+    val testInput = readInput("Day06_test")
     val testResult1 = part1(testInput)
     testResult1.println()
     check(testResult1 == 0)
@@ -17,7 +17,7 @@ fun main() {
     testResult2.println()
     check(testResult2 == 0)
 
-    val realInput = readInput("Day%DAY%")
+    val realInput = readInput("Day06")
     part1(realInput).println()
     part2(realInput).println()
 }
