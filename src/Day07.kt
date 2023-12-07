@@ -4,17 +4,17 @@ fun CharSequence.containsExactly(character: Char, count: Int): Boolean {
 }
 
 data class CamelHand(val hand: String, val bid: Int): Comparable<CamelHand> {
-    val cardTypesOrdered = listOf(
+    private val cardTypesOrdered = listOf(
         'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2',
     )
-    fun isFullHouse(): Boolean =
+    private fun isFullHouse(): Boolean =
         cardTypesOrdered.count { this.hand.containsExactly(it, 3) } == 1
           && cardTypesOrdered.count {this.hand.containsExactly(it, 2) } == 1
-    fun hasNumOfKind(num: Int): Boolean =
+    private fun hasNumOfKind(num: Int): Boolean =
         cardTypesOrdered.any { this.hand.containsExactly(it, num) }
-    fun isTwoPair(): Boolean =
+    private fun isTwoPair(): Boolean =
         cardTypesOrdered.count { this.hand.containsExactly(it, 2)} == 2
-    fun isPair(): Boolean =
+    private fun isPair(): Boolean =
         cardTypesOrdered.count { this.hand.containsExactly(it, 2)} == 1
     fun getHandRank(): Int {
         return when {
@@ -28,7 +28,7 @@ data class CamelHand(val hand: String, val bid: Int): Comparable<CamelHand> {
         }
     }
 
-    fun compareHighCard(other: CamelHand): Int {
+    private fun compareHighCard(other: CamelHand): Int {
         this.hand.forEachIndexed {
            index, c ->
             if (cardTypesOrdered.indexOf(c) < cardTypesOrdered.indexOf(other.hand[index])) {
@@ -51,26 +51,26 @@ data class CamelHand(val hand: String, val bid: Int): Comparable<CamelHand> {
     }
 }
 data class JokerHand(val hand: String, val bid: Int): Comparable<JokerHand> {
-    val cardTypesOrdered = listOf(
+    private val cardTypesOrdered = listOf(
         'A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J',
     )
-    fun numJokers(): Int = hand.count { it == 'J' }
-    fun cardCounts(): List<Int> {
+    private fun numJokers(): Int = hand.count { it == 'J' }
+    private fun cardCounts(): List<Int> {
         val counts: MutableList<Int> = cardTypesOrdered.filter{it != 'J'}.map{ c ->
             hand.count { it == c }
         }.sortedDescending().toMutableList()
         counts[0] += numJokers()
         return counts
     }
-    fun isFullHouse(): Boolean =
+    private fun isFullHouse(): Boolean =
         cardCounts()[0] == 3 && cardCounts()[1] == 2
-    fun hasNumOfKind(num: Int): Boolean =
+    private fun hasNumOfKind(num: Int): Boolean =
         cardCounts()[0] == num
-    fun isTwoPair(): Boolean =
+    private fun isTwoPair(): Boolean =
         cardCounts()[0] == 2 && cardCounts()[1] == 2
-    fun isPair(): Boolean =
+    private fun isPair(): Boolean =
         cardCounts()[0] == 2
-    fun getHandRank(): Int {
+    private fun getHandRank(): Int {
         return when {
             hasNumOfKind(5) -> 7 // Five of a kind
             hasNumOfKind(4) -> 6 // Four of a kind
@@ -82,7 +82,7 @@ data class JokerHand(val hand: String, val bid: Int): Comparable<JokerHand> {
         }
     }
 
-    fun compareHighCard(other: JokerHand): Int {
+    private fun compareHighCard(other: JokerHand): Int {
         this.hand.forEachIndexed {
                 index, c ->
             if (cardTypesOrdered.indexOf(c) < cardTypesOrdered.indexOf(other.hand[index])) {

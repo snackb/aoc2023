@@ -1,7 +1,3 @@
-import java.util.*
-
-
-
 data class Game(val number: Int, val draws: List<Map<Colour, Int>>)
 
 enum class Colour {
@@ -53,7 +49,7 @@ fun validityPredicateForCount(red: Int, green: Int, blue: Int): (Game) -> Boolea
 
 
 fun minNeededToWin(game: Game): Map<Colour, Int> {
-    var minimum = mutableMapOf(
+    val minimum = mutableMapOf(
             Colour.BLUE to 0,
             Colour.RED to 0,
             Colour.GREEN to 0)

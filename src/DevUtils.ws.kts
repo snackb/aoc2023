@@ -1,6 +1,8 @@
-import java.io.File
 import java.nio.file.Paths
-import kotlin.io.path.*
+import kotlin.io.path.Path
+import kotlin.io.path.createFile
+import kotlin.io.path.readText
+import kotlin.io.path.writeText
 
 fun generateFilesForDay(day: String) {
 

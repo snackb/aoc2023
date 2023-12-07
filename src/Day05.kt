@@ -12,9 +12,9 @@ fun main() {
     }
     fun parseRangePair(input: String): RangePair {
         val numbers = input.trim().split(" ").map { it.trim().toLong() }
-        val destStart = numbers[0].toLong()
-        val sourceStart = numbers[1].toLong()
-        val length = numbers[2].toLong()
+        val destStart = numbers[0]
+        val sourceStart = numbers[1]
+        val length = numbers[2]
         return RangePair(destStart, sourceStart, length)
     }
     fun parseRangeMap(input: String): RangeMap {

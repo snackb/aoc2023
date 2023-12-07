@@ -13,8 +13,8 @@ fun main() {
         val distances = input[1].split(":")[1].split(" ").mapNotNull(String::toLongOrNull)
         times.println()
         distances.println()
-        var pairs = times.zip(distances)
-        var result = pairs.map { (time, distance) -> getWinningCounts(time, distance)}
+        val pairs = times.zip(distances)
+        val result = pairs.map { (time, distance) -> getWinningCounts(time, distance)}
         return result.fold(1, Long::times)
     }
     fun part2(input: List<String>): Long {
