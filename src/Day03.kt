@@ -1,6 +1,5 @@
-typealias Coord = Pair<Int, Int>
-typealias Symbols = MutableMap<Coord, Char>
-typealias Numbers = MutableMap<Coord, String>
+typealias Symbols = MutableMap<Pair<Int, Int>, Char>
+typealias Numbers = MutableMap<Pair<Int, Int>, String>
 
 fun consumeNumber(input: String): String {
     val end = input.indexOfFirst { !it.isDigit() }
@@ -32,7 +31,7 @@ fun parseDiagram(input: List<String>): Pair<Symbols, Numbers> {
     return symbols to numbers
 }
 
-fun Map.Entry<Coord, String>.isContainedInSymbols(symbols: Symbols): Boolean {
+fun Map.Entry<Pair<Int, Int>, String>.isContainedInSymbols(symbols: Symbols): Boolean {
     val coord = this.key
     val startx = coord.first - 1
     val starty = coord.second - 1
@@ -46,9 +45,9 @@ fun Map.Entry<Coord, String>.isContainedInSymbols(symbols: Symbols): Boolean {
     return false
 }
 
-typealias GearCandidates = Map<Coord, Pair<Int, Int>>
+typealias GearCandidates = Map<Pair<Int, Int>, Pair<Int, Int>>
 
-fun Map.Entry<Coord, String>.getAttachedGears(symbols: Symbols): Sequence<Coord> {
+fun Map.Entry<Pair<Int, Int>, String>.getAttachedGears(symbols: Symbols): Sequence<Pair<Int, Int>> {
     val coord = this.key
     val number = this.value
     val startx = coord.first - 1
