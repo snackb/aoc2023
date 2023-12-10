@@ -29,7 +29,7 @@ fun main() {
 
     fun DesertMap.traverseByGhostDirections(directions: List<Char>): Long {
         var cur = this.keys.filter { it.last() == 'A' }
-        val first_z = cur.map { -1L } .toMutableList()
+        val firstZ = cur.map { -1L } .toMutableList()
         var i = 0L
         while (true) {
             for (dir in directions) {
@@ -40,12 +40,12 @@ fun main() {
                 }
                 i++
                 for ((index, c) in cur.withIndex()) {
-                    if (c.last() == 'Z' && first_z[index] == -1L) {
-                        first_z[index] = i
+                    if (c.last() == 'Z' && firstZ[index] == -1L) {
+                        firstZ[index] = i
                     }
                 }
-                if (first_z.all { it > 0}) {
-                    return first_z.fold(1, ::lcm)
+                if (firstZ.all { it > 0}) {
+                    return firstZ.fold(1, ::lcm)
                 }
             }
         }

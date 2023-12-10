@@ -14,4 +14,4 @@ fun generateFilesForDay(day: String) {
 }
 
 Paths.get("").toAbsolutePath().println()
-generateFilesForDay("08")
+generateFilesForDay("09")
